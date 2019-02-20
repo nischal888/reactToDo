@@ -15,14 +15,17 @@ class App extends Component {
   componentWillMount() {
     console.log('componentWillMount');
     let items = JSON.parse(localStorage.getItem('buyitems'));
-    let itemsHolder = [];
-    items.forEach(function (item, index) {
-      itemsHolder[index] = item.value;
-    });
-    localStorage.getItem('buyitems') && this.setState({
-      buyitems: items,
-      buyitemsEditValueHolder: itemsHolder
-    })
+    if (items) {
+      let itemsHolder = [];
+      items.forEach(function (item, index) {
+        itemsHolder[index] = item.value;
+      });
+      localStorage.getItem('buyitems') && this.setState({
+        buyitems: items,
+        buyitemsEditValueHolder: itemsHolder
+      })
+    }
+
   }
 
   addItems = (event) => {
